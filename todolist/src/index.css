@@ -1,0 +1,6 @@
+.item--todo{
+    background-color: aqua;
+}
+.item--finished{
+    background-color: greenyellow;
+}
