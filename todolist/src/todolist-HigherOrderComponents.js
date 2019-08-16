@@ -6,7 +6,7 @@ import './index.css'
 class BaseAction extends React.Component {
     render() {
         return (
-            <Input onChange={this.props.onChange} addonAfter={<Button onClick={this.props.add}>新增</Button>}></Input>
+            <Input value={this.props.value} onChange={this.props.onChange} addonAfter={<Button onClick={this.props.add}>新增</Button>}></Input>
         )
     }
 }
@@ -20,8 +20,8 @@ class BaseItem extends React.Component {
                     {this.props.item.label}
                 </Col>
                 <Col className="gutter-row" span={6}>
-                    {this.props.item.status === 0 && <Button onClick={this.props.finish.bind(this,this.props.index)}>完成</Button>}
-                    <Button onClick={this.props.del.bind(this,this.props.index)}>删除</Button>
+                    {this.props.item.status === 0 && <Button onClick={_ => this.props.finish(this.props.index)}>完成</Button>}
+                    <Button onClick={_ => this.props.del(this.props.index)}>删除</Button>
                 </Col>
             </Row>
         )
@@ -61,7 +61,7 @@ function App() {
     let [status, setStatus] = useState(null)
     return (
         <>
-            <Action onChange={e => setLabel(e.target.value)} add={_ => {
+            <Action value={label} onChange={e => setLabel(e.target.value)} add={_ => {
                 list.push({label,status:0})
                 setList([...list])
                 setLabel('')
